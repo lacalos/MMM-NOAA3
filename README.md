@@ -1,5 +1,8 @@
-This repository is maintained by Cowboysdude 
+This repository is maintained by Cowboysdude
 [This is the third version of this module for MagicMirror2]
+
+Example of bigger pictures added
+![](examples/4.png) 
 
 # MMM-NOAA V3.0
 
@@ -31,11 +34,11 @@ Remember not all providers are created equal... Some are a bit better than other
 * accuweather ~ https://developer.accuweather.com/
 * openweather ~ https://openweathermap.org/api
 * yahoo [AS OF 1/3/2019 YAHOO WEATHER API NO LONGER WORKS, IT'S BEEN RETIRED]
- 
+
 ##    YOU WILL NEED YOUR LATITUDE AND LONGITUDE
- You can find them right here: 
+ You can find them right here:
         https://www.latlong.net/
- 
+
 ## Get your AirKEY from here
 
 [https://airvisual.com/api](https://airvisual.com/api)
@@ -44,17 +47,17 @@ Remember not all providers are created equal... Some are a bit better than other
 
 Will automatically select translation file and either F or C by reading your defaults from the config.js file [at the top]
 Will default to EN if NO translation file is found.  
-   
+
 ## Provider name MUST be in the config.js. Here they are:
-	 
+
 * weatherbit  
-* darksky 
-* apixu 
-* weatherunlocked 
+* darksky
+* apixu
+* weatherunlocked
 * accuweather  
-* openweather 
-*  AS OF 1/3/2019 THIS WILL NO LONGER WORK yahoo 
-    
+* openweather
+*  AS OF 1/3/2019 THIS WILL NO LONGER WORK yahoo
+
 * For all of them EXCEPT YAHOO and WEATHERUNLOCKED
      ```   {
         module: 'MMM-NOAA3',
@@ -63,7 +66,7 @@ Will default to EN if NO translation file is found.
 		    provider: "must be in quotes", // From list above
 		    apiKey: "YOUR API KEY",        // From one of the providers listed above
 		    airKey: "YOUR API KEY",    
-	        css: "NOAA3",                   // THIS MUST CONTAIN A CSS STYLE NAME 
+	        css: "NOAA3",                   // THIS MUST CONTAIN A CSS STYLE NAME
 		userlat: "xxxx", //MUST HAVE BOTH
 	        userlon: "xxxx"  //MUST HAVE BOTH
 	 }
@@ -78,7 +81,7 @@ Will default to EN if NO translation file is found.
 		    provider: "weatherunlocked",       
 		    apiKey: "YOUR API KEY",  
 		    appID: "YOUR APP ID",  
-		    airKey: "YOUR API KEY", 
+		    airKey: "YOUR API KEY",
 	        css: "NOAA3",                  // THIS MUST CONTAIN A CSS STYLE NAME
 		userlat: "xxxx", //MUST HAVE BOTH
 	        userlon: "xxxx"  //MUST HAVE BOTH
@@ -89,11 +92,11 @@ Will default to EN if NO translation file is found.
 	```
 	 AS OF 1/3/2019 THE YAHOO API WAS RETIRED AND NO LONGER WORKS.
 	```
-	
+
 It seems that when using Accuweather, the zip code needs to be the 6 digit code from accuweather.com's website found after typing in the zip code into their search bar.
 From Zip Code "13502" returns "329671"-which is what I put in my config file in order to get it to display local weather.
 zip: '329671', //MUST have valid zip Code
-	
+
 * Accuweather Example:
 	```
 	 {
@@ -101,15 +104,15 @@ zip: '329671', //MUST have valid zip Code
 	position: 'top_left',
         config: {
 		provider: "accuweather",   
-		airKey: "YOUR API KEY", 
-	        css: "NOAA3",                 // THIS MUST CONTAIN A CSS STYLE NAME 
+		airKey: "YOUR API KEY",
+	        css: "NOAA3",                 // THIS MUST CONTAIN A CSS STYLE NAME
 		userlat: "xxxx", //MUST HAVE BOTH
 	        userlon: "xxxx"  //MUST HAVE BOTH
 		zip: "11111" //MUST have valid zip Code
 	}
-    },	
+    },
 	```
-	
+
 * Apixu Example:
 	```
 	 {
@@ -117,25 +120,25 @@ zip: '329671', //MUST have valid zip Code
 	position: 'top_left',
         config: {
 		provider: "accuweather",   
-		airKey: "YOUR API KEY", 
-	        css: "NOAA3",                 // THIS MUST CONTAIN A CSS STYLE NAME 
+		airKey: "YOUR API KEY",
+	        css: "NOAA3",                 // THIS MUST CONTAIN A CSS STYLE NAME
 		userlat: "xxxx", //MUST HAVE BOTH
 	        userlon: "xxxx"  //MUST HAVE BOTH
 		city: "elmira" //MUST have valid zip Code
 	}
-    },	
-	```	
-	
-	
+    },
+	```
+
+
 ## ISSUES
 
   While we tried to make NOAA everything a weather module can be, not everyone will give out weather warnings with the free api key.
-  Thanks to Wunderground going belly up on the users........ soooooo we suggest that you use this module for warnings->	
-  
+  Thanks to Wunderground going belly up on the users........ soooooo we suggest that you use this module for warnings->
+
   https://github.com/LukeSkywalker92/MMM-DWD-WarnWeather
-  
+
   This is a weather warning module that will fit the bill nicely :)
-  
+
 ## UpdateInterval
 
 Via the config you can change this..... currently it's set to 30 minutes like this ->  updateInterval: 30 * 60 * 1000
@@ -146,34 +149,34 @@ You can add this to your config.js to change it if you'd like ... like this ->
         module: 'MMM-NOAA3',
         config: {
 		    provider: "Yahoo",   
-		    airKey: "YOUR API KEY", 
+		    airKey: "YOUR API KEY",
 	        css: "NOAA3",   // THIS MUST CONTAIN A CSS STYLE NAME
-		    updateInterval: 15 * 60 * 1000, // every 15 minutes or whatever you choose but make sure you have an api that will allow that many calls per day!!! 
+		    updateInterval: 15 * 60 * 1000, // every 15 minutes or whatever you choose but make sure you have an api that will allow that many calls per day!!!
 		   userlat: "xxxx", //MUST HAVE BOTH
-	           userlon: "xxxx"  //MUST HAVE BOTH 
+	           userlon: "xxxx"  //MUST HAVE BOTH
 	}
     },
-	
+
 ## CSS STYLES
 
 * You can choose one of 4 styles [colors] for NOAA3
 
 ## NOAA1 (Color style #1)  
-![](examples/1.png) 
+![](examples/1.png)
 
 ## NOAA2 (Color style #2)  
-![](examples/2.png) 
+![](examples/2.png)
 
 ## NOAA3 (Color style #3)  
-![](examples/3.png) 
+![](examples/3.png)
 
 
 ## NOAA4 (Changes colors automatically)  
 
-![](examples/41.png) 
-![](examples/42.png) 
-![](examples/43.png) 
-![](examples/44.png) 
+![](examples/41.png)
+![](examples/42.png)
+![](examples/43.png)
+![](examples/44.png)
 ![](examples/45.png)
 
 ## What's the mouseover?
@@ -194,6 +197,6 @@ Well just go to your css directory in MagicMirror2 and open up the css directory
 ```  
 That will give you plain old white headings OR pick any color style you want!!  :) Like this->  
 ![](examples/plain.png)
-     
-## Start your mirror . . . enjoy! 
+
+## Start your mirror . . . enjoy!
   The first time you run it .....you may get an error.  It needs to find your lat/lon.  The 1st time you run it is when it finds it.....after that it will work without issue :)
