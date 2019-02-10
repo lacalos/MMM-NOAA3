@@ -128,14 +128,16 @@ Module.register("MMM-NOAA3", {
     },
 
     getStyles: function() {
-        if (this.config.css == "NOAA3") {
+        if (this.config.css == "NOAA4") {
+            return ["modules/MMM-NOAA3/css/MMM-NOAA4.css"];
+        } else if (this.config.css == "NOAA3") {
             return ["modules/MMM-NOAA3/css/MMM-NOAA3.css"];
         } else if (this.config.css == "NOAA2") {
             return ["modules/MMM-NOAA3/css/MMM-NOAA2.css"];
         } else if (this.config.css == "NOAA1") {
 			return ["modules/MMM-NOAA3/css/MMM-NOAA1.css"];
 		} else {
-			return ["modules/MMM-NOAA3/css/MMM-NOAA4.css"];
+			return ["modules/MMM-NOAA3/css/MMM-NOAA5.css"];
 		}
     },
 

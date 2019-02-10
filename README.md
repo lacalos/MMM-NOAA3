@@ -2,7 +2,8 @@ This repository is maintained by Cowboysdude
 [This is the third version of this module for MagicMirror2]
 
 Example of bigger pictures added
-![](examples/4.png) 
+
+![](examples/4.png)
 
 # MMM-NOAA V3.0
 
