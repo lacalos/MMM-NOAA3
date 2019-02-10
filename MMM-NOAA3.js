@@ -10,7 +10,7 @@ Module.register("MMM-NOAA3", {
     defaults: {
         animationSpeed: 0,
         initialLoadDelay: 8000,
-        rotateInterval: 60 * 1000, 
+        rotateInterval: 60 * 1000,
 	updateInterval: 30 * 60 * 1000,
         apiKey: "",
         airKey: "",
@@ -66,7 +66,7 @@ Module.register("MMM-NOAA3", {
             "10": "Very High",
             "11": "Extreme",
         },
-		
+
 		moon: {
 			"Last Quarter": 'modules/MMM-NOAA3/images/moon/thirdquarter.png',
 			"New Moon": 'modules/MMM-NOAA3/images/moon/newmoon.png',
@@ -156,13 +156,13 @@ Module.register("MMM-NOAA3", {
         this.current = {};
         this.today = "";
         this.aqius = {};
-		this.issue = {}; 
+		this.issue = {};
         this.activeItem = 0;
-        this.rotateInterval = null; 
+        this.rotateInterval = null;
         this.loaded = true;
     },
-	
-	 
+
+
 
     socketNotificationReceived: function(notification, payload) {
 		if (notification === "WEATHER_RESULT") {
@@ -179,7 +179,7 @@ Module.register("MMM-NOAA3", {
         }
 		if (notification === "MOON_RESULT") {
             this.processMOON(payload);
-        }  
+        }
 		 if (this.rotateInterval == null) {
                 this.scheduleCarousel();
             }
@@ -187,10 +187,10 @@ Module.register("MMM-NOAA3", {
         this.config.updateInterval;;
     },
 	  processMOON: function(data) {
-        this.moon = data; 
-console.log(this.moon);		
+        this.moon = data;
+console.log(this.moon);
     },
-	
+
     processAIR: function(data) {
         this.air = data.air;
     },
@@ -199,45 +199,45 @@ console.log(this.moon);
 		srss = this.srss;
 		//console.log(srss);
     },
-	
+
 	processWeather: function(data) {
         this.current = data;
 		var weather = this.current.current.current;
 			 icon = weather.icon;
 			 sunset = this.srss.sunset;
 	    this.sendNotification("WEATHER", {icon , sunset});
-		 this.loaded = true; 
+		 this.loaded = true;
     },
-	
+
 	processALERT: function(data) {
         this.issue = data.alerts;
-console.log(this.issue);		
+console.log(this.issue);
     },
-	
+
 	scheduleCarousel: function() {
         this.rotateInterval = setInterval(() => {
             this.activeItem++;
             this.updateDom();
         }, this.config.rotateInterval);
     },
-	
-	
+
+
     getDom: function() {
-		
+
 		 if (!this.loaded) {
             wrapper.classList.add("container");
             wrapper.innerHTML = "Gathering your weather info..";
             wrapper.className = "bright small";
             return wrapper;
         }
-		
-		
+
+
         var wrapper = document.createElement("div");
         var current = this.current.current;
 //console.log(current);
         var d = new Date();
         var n = d.getHours();
- 
+
         if (typeof current !== 'undefined') {
             var weather = current.current.weather;
             var weather_f = current.current.weather_f;
@@ -267,15 +267,15 @@ console.log(this.issue);
 
         var curCon = document.createElement("div");
         curCon.classList.add("img");
-        curCon.innerHTML = (n < 18 && n > 6) ? "<img src='modules/MMM-NOAA3/images/" + icon + ".png'>" : "<img src='modules/MMM-NOAA3/images/nt_" + icon + ".png'>";
+        curCon.innerHTML = (n < 18 && n > 6) ? "<img src='modules/MMM-NOAA3/images_big/" + icon + ".png'>" : "<img src='modules/MMM-NOAA3/images_big/nt_" + icon + ".png'>";
         wrapper.appendChild(curCon);
-		
-		
+
+
 		function myFunction(id) {
     var x = document.getElementById(id);
     if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
-    } else { 
+    } else {
         x.className = x.className.replace(" w3-show", "");
     }
      }
@@ -286,9 +286,9 @@ console.log(this.issue);
         cur.innerHTML = `<div class="divTable">
           <div class="divTableBody">
         <div class="divTableRow">
-            <div class="divTableHead"> </div> 
+            <div class="divTableHead"> </div>
         </div>
-		<div class="divTableRow"> 
+		<div class="divTableRow">
                 <div class="divTableCell2">${temper}</div>
             </div></div></div> `
         wrapper.appendChild(cur);
@@ -297,7 +297,7 @@ console.log(this.issue);
 		top.classList.add('topshow');
 		var Baro = config.units != "metric" ? baro_in + " inHg": baro_mb;
 		var Miles = config.units != "metric" ? visibility + " Mi": (Math.round(visibility*1.60934)) + " Km";
-		top.innerHTML=	
+		top.innerHTML=
 		`<div class="divTable">
           <div class="divTableBody">
         <div class="divTableRow">
@@ -305,19 +305,19 @@ console.log(this.issue);
             <div class="divTableHead">${this.translate("Pressure")}</div>
             <div class="divTableHead">${this.translate("Visibility")}</div>
         </div>
-		
+
 		<div class="divTableRow">
                 <div class="divTableCell">${humid}</div>
                 <div class="divTableCell">${Baro}</div>
                 <div class="divTableCell">${Miles}</div>
             </div></div></div>`;
-         top.addEventListener("click", () => hideit(thisTop));			
+         top.addEventListener("click", () => hideit(thisTop));
 		 wrapper.appendChild(top);
-        
+
 		function hideit(thisTop) {
 				top.style.display="none";
 			};
-		
+
 		srss = this.srss;
         var sunrise = srss.sunrise;
         var sunset = srss.sunset;
@@ -325,27 +325,27 @@ console.log(this.issue);
         var utcsunset = moment.utc(sunset).toDate();
         var sunrise = config.timeFormat == 12 ? moment(utcsunrise).local().format("h:mm") : moment(utcsunrise).local().format("HH:mm");
         var sunset = config.timeFormat == 12 ? moment(utcsunset).local().format("h:mm") : moment(utcsunset).local().format("HH:mm");
-		 
+
 		var nextDiv = document.createElement('div');
-		nextDiv.innerHTML=	
+		nextDiv.innerHTML=
 		`<div class="divTable">
    <div class="divTableBody">
-   
+
       <div class="divTableRow">
          <div class="divTableHead">${this.translate("Rise")}</div>
          <div class="divTableHead">${this.translate("Hours of Light")}</div>
          <div class="divTableHead">${this.translate("Set")}</div>
       </div>
-	 
+
       <div class="divTableRow">
          <div class="divTableCell">${sunrise}</div>
          <div class="divTableCell">${this.secondsToString()}</div>
          <div class="divTableCell">${sunset}</div>
       </div>
    </div>
-</div>`; 
+</div>`;
 		 wrapper.appendChild(nextDiv);
-		 
+
 		var time = new Date();
         var g = time.getHours();
         var m = time.getMinutes();
@@ -353,54 +353,54 @@ console.log(this.issue);
         var done = moment(fun, ["h:mm A"]).format("HH:mm");
         var str1 = moment(sunrise, ["h:mm A"]).format("HH:mm");
         var str2 = moment(sunset, ["h:mm A"]).format("HH:mm");
-		
+
 		var ev1= moment().format("HH");
 		var ev2  = moment(srss.sunrise).format("HH");
-		var ev3 =  moment(srss.sunset).format("HH"); 
-	// console.log("Now :"+ev1 + " Rise: "+ ev2+" Set:  "+ev3);	
+		var ev3 =  moment(srss.sunset).format("HH");
+	// console.log("Now :"+ev1 + " Rise: "+ ev2+" Set:  "+ev3);
 		var lastDiv = document.createElement('div');
         var level = this.air.aqius;
 
-        this.air.aqius  > 0 && this.air.aqius <= 50 ? level = this.translate('Excellent') : 
+        this.air.aqius  > 0 && this.air.aqius <= 50 ? level = this.translate('Excellent') :
         this.air.aqius > 50 && this.air.aqius <= 100 ? level = this.translate('Good') :
 	    this.air.aqius > 100 && this.air.aqius <= 150 ? level = this.translate('Lightly Polluted') :
 	    this.air.aqius > 151 && this.air.aqius <= 200 ? level = this.translate('Moderately Polluted') :
 	    this.air.aqius > 201 && this.air.aqius <= 300 ? level = this.translate('Heavily Polluted') :
 	    level = this.translate('Severely Polluted');
 
-        /*this.air.aqius  > 0 && this.air.aqius <= 50 ? this.air.aqius + "<span class='CellComment'>" + this.translate('Excellent') + "</span>": 
+        /*this.air.aqius  > 0 && this.air.aqius <= 50 ? this.air.aqius + "<span class='CellComment'>" + this.translate('Excellent') + "</span>":
         this.air.aqius > 50 && this.air.aqius <= 100 ? this.air.aqius + "<span class='CellComment'>" + this.translate('Good') + "</span>" :
 	    this.air.aqius > 100 && this.air.aqius <= 150 ? this.air.aqius + "<span class='CellComment'>" + this.translate('Lightly Polluted') + "</span>":
 	    this.air.aqius > 151 && this.air.aqius <= 200 ? this.air.aqius + "<span class='CellComment'>" + this.translate('Moderately Polluted') + "</span>":
 	    this.air.aqius > 201 && this.air.aqius <= 300 ? this.air.aqius + "<span class='CellComment'>" + this.translate('Heavily Polluted') + "</span>":
-	    this.air.aqius + "<span class='CellComment'>Severely Polluted</span></div>";	*/	
+	    this.air.aqius + "<span class='CellComment'>Severely Polluted</span></div>";	*/
 		lastDiv.innerHTML=
 		`<div class="divTable">
    <div class="divTableBody">
-  
+
       <div class="divTableRow">
          <div class="divTableHead">${this.translate("AQI")}</div>
          <div class="divTableHead">${(ev1 >= ev2 && ev1 <= ev3) ? "UV": this.translate("Night")}</div>
          <div class="divTableHead">${this.translate("Wind")}</div>
       </div>
-	   
+
       <div class="divTableRow">
        <div class="divTableCell">${level}</div>
          <div class="divTableCell">${(ev1 >= ev2 && ev1 <= ev3) ? UV : '<img src ='+this.config.moon[this.moon]+' height="27px" width="27px">'}</div>
          <div class="divTableCell">${(this.config.lang != 'en') ? wind_kph : wind_mph}</div>
       </div>
    </div>
-</div>`; 
+</div>`;
 		 wrapper.appendChild(lastDiv);
-		 
+
 	//uv moon above//////////////////////////////////////////////////
-	
+
 		var forecast = this.current.forecast
         if (forecast != null) {
 
             var ForecastTable = document.createElement("table");
             ForecastTable.classList.add("table")
-            ForecastTable.setAttribute('style', 'line-height: 20%;');
+            ForecastTable.setAttribute('style', 'line-height: 20%; width: 70%; float: right;');
 
             var FCRow = document.createElement("tr");
             var jumpy = document.createElement("th");
@@ -443,11 +443,11 @@ console.log(this.issue);
             for (i = 0; i < this.current.forecast.length; i++) {
                 var noaa = this.current.forecast[i];
                 var fore = document.createElement("td");
-                fore.setAttribute("colspan", "1"); 
+                fore.setAttribute("colspan", "1");
 				//fore.setAttribute('style','float: center');
                 fore.classList.add("CellWithComment");
 				if (noaa.date.weekday_short == n){
-				fore.innerHTML = "<img src='modules/MMM-NOAA3/images/" + noaa.icon + ".png' height='22' width='28'>";	
+				fore.innerHTML = "<img src='modules/MMM-NOAA3/images/" + noaa.icon + ".png' height='22' width='28'>";
 				} else {
                 fore.innerHTML = "<img src='modules/MMM-NOAA3/images/" + noaa.icon + ".png' height='22' width='28'><span class='CellComment'>" + noaa.desc.desc + "</span>";
 				}
@@ -468,7 +468,7 @@ console.log(this.issue);
 
             wrapper.appendChild(ForecastTable);
         }
-		
+
 //////////ALERT FOR DarkSKY ONLY////////////////////
 					var issue = this.issue;
 		if (typeof issue != 'undefined' || null){
@@ -505,8 +505,8 @@ console.log(this.issue);
 			}
 		}
 /////////////ALERT END///////////////////////////////////
-		
-		
+
+
 		if (this.config.nupdate != false){
         if (config.timeFormat == 12) {
             var doutput = moment().format("M.D.YYYY");
