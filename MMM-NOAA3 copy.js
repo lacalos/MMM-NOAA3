@@ -329,7 +329,6 @@ console.log(this.issue);
         var sunset = config.timeFormat == 12 ? moment(utcsunset).local().format("h:mm") : moment(utcsunset).local().format("HH:mm");
 
 		var nextDiv = document.createElement('div');
-    nextDiv.classList.add('riseset');
 		nextDiv.innerHTML=
 		`<div class="divTable">
    <div class="divTableBody">
@@ -377,8 +376,7 @@ console.log(this.issue);
 	    this.air.aqius > 151 && this.air.aqius <= 200 ? this.air.aqius + "<span class='CellComment'>" + this.translate('Moderately Polluted') + "</span>":
 	    this.air.aqius > 201 && this.air.aqius <= 300 ? this.air.aqius + "<span class='CellComment'>" + this.translate('Heavily Polluted') + "</span>":
 	    this.air.aqius + "<span class='CellComment'>Severely Polluted</span></div>";	*/
-    lastDiv.classList.add('moon');
-    lastDiv.innerHTML=
+		lastDiv.innerHTML=
 		`<div class="divTable">
    <div class="divTableBody">
 
