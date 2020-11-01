@@ -403,8 +403,8 @@ console.log(this.issue);
         if (forecast != null) {
 
             var ForecastTable = document.createElement("table");
-            ForecastTable.classList.add("table")
-            ForecastTable.setAttribute('style', 'line-height: 20%; width: 70%; float: right;');
+            ForecastTable.classList.add("forecasttable")
+            ForecastTable.setAttribute('style', 'line-height: 20%; width: 100%; float: right;');
 
             var FCRow = document.createElement("tr");
             var jumpy = document.createElement("th");

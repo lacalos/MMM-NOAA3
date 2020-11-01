@@ -67,7 +67,7 @@ height: 250%;}
 	position: relative;
 	z-index: 1;
 }
-.MMM-NOAA3 .floatl {float: left;}
+.MMM-NOAA3 .floatl {display: none;}
 .MMM-NOAA3 .forec {
 	position: relative;
     z-index: 1;
@@ -247,8 +247,11 @@ height: 250%;}
     display: none;
   }
   .MMM-NOAA3 .riseset {
-    dislay: none !important;
+    display: none;
   }
   .MMM-NOAA3 .moon {
+    display: none;
+  }
+  .MMM-NOAA3 .forecasttable {
     display: none;
   }
