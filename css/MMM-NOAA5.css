@@ -247,7 +247,7 @@ height: 250%;}
     display: none;
   }
   .MMM-NOAA3 .riseset {
-    dislay: none;
+    dislay: none !important;
   }
   .MMM-NOAA3 .moon {
     display: none;
